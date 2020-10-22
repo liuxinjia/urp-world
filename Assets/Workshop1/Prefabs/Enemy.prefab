@@ -1457,6 +1457,7 @@ MonoBehaviour:
   healthPoints: 100
   isDead: 0
   characterGraphics: {fileID: 696925135937392490}
+  hitFx: {fileID: 7787176349294610034, guid: 4852eef9036d9ab47957b279a60aa677, type: 3}
   moveSpeed: 30
   attackWaitTimer: 3
   attackDistance: 1.5

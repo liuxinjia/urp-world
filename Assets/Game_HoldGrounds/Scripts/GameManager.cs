@@ -430,6 +430,7 @@ namespace Game_HoldGrounds.Scripts
             if (Physics.Raycast(ray, out var hitInfo, 100, buildGroundLayer))
             {
                 buildingToBuild.bluePrint.position = hitInfo.point;
+                
                 //Cancel Build
                 if (Input.GetButtonDown("Fire2"))
                 {
@@ -441,6 +442,7 @@ namespace Game_HoldGrounds.Scripts
                     buildingToBuild.bluePrintCollision.localScale / 2, Quaternion.identity, bluePrintBadLayers);
                 if (hits.Length > 0 || buildingToBuild.bluePrint.position.y > maxHeightToBuild)
                 {
+                    Debug.Log("54564");
                     BuildingCheckTouch(true);
                     return;
                 }
@@ -449,6 +451,7 @@ namespace Game_HoldGrounds.Scripts
                 var dist = Vector3.Distance(buildingToBuild.bluePrintCollision.position, flagBlue.position);
                 if (dist > maxRadiusToBuild)
                 {
+                    Debug.Log("123");
                     BuildingCheckTouch(true);
                     if (Input.GetButtonDown("Fire1"))
                     {
@@ -461,6 +464,7 @@ namespace Game_HoldGrounds.Scripts
                 BuildingCheckTouch(false);
                 if (Input.GetButtonDown("Fire1"))
                 {
+                    Debug.Log("Building...");
                     CreateBuilding();
                 }
             }

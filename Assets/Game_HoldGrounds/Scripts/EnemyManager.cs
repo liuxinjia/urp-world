@@ -1,6 +1,5 @@
 ﻿using General.Utilities;
 using UnityEngine;
-using TMPro;
 
 namespace Game_HoldGrounds.Scripts
 {
@@ -13,6 +12,8 @@ namespace Game_HoldGrounds.Scripts
     {
         [Header("====== WAVE SETUP")]
         [SerializeField] private bool waveEnabled;
+        [Tooltip("This will make all enemy buildings to also train units. Makes the game harder.")]
+        [SerializeField] private bool trainUnitsEnabled;
         [Tooltip("How long player needs to wait before first wave.")]
         [SerializeField] private float initialWaitTimer = 30;
         [Tooltip("Timer to enemy train units, this will never change.")]
@@ -102,16 +103,19 @@ namespace Game_HoldGrounds.Scripts
                 return;
             
             //TRAIN UNITS
-            currentTrainUnitsTimer -= Time.deltaTime;
-            if (currentTrainUnitsTimer <= 0)
+            if (trainUnitsEnabled)
             {
-                currentTrainUnitsTimer = trainUnitsTimer;
-                //Train units at the enemy buildings
-                for (var i = 0; i < listOfEnemyBuildings.Length; i++)
+                currentTrainUnitsTimer -= Time.deltaTime;
+                if (currentTrainUnitsTimer <= 0)
                 {
-                    //Some enemy buildings might be already destroyed.
-                    if (listOfEnemyBuildings[i] != null)
-                        listOfEnemyBuildings[i].TrainUnit();
+                    currentTrainUnitsTimer = trainUnitsTimer;
+                    //Train units at the enemy buildings
+                    for (var i = 0; i < listOfEnemyBuildings.Length; i++)
+                    {
+                        //Some enemy buildings might be already destroyed.
+                        if (listOfEnemyBuildings[i] != null)
+                            listOfEnemyBuildings[i].TrainUnit();
+                    }
                 }
             }
             

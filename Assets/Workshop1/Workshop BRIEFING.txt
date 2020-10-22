@@ -1,0 +1,16 @@
+===== WORKSHOP
+
+This quick game was created to deliver a workshop and explain how you can get started with Unity creating a 3D game.
+Workshop slides will not be shared.
+
+Download the project on github:
+- https://github.com/Unity-Technologies/urp-world
+
+===== BRIEFING
+
+- Main menu just loads or exit the game.
+- You have a top down action game where you need to defeat the enemies.
+- Use attack with Left Ctrl or Mouse 0.
+- If you lose all health, you lose.
+- If you reach a given amount of score, you win.
+- Score, health, win condition and more can be customized in Editor. 

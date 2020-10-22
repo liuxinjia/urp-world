@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Game_HoldGrounds/Scenes/Level_1.unity
     guid: 246875255f7e75a44a6c367f3c6c5125
+  - enabled: 1
+    path: Assets/Workshop1/Scenes/Menu.unity
+    guid: a0e889f3d3fe16f49946c7737a801e62
+  - enabled: 1
+    path: Assets/Workshop1/Scenes/Game.unity
+    guid: 2dc4ea0f3af5d50489a80e1b7ee0af88
   m_configObjects: {}

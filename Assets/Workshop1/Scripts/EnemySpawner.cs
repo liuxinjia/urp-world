@@ -14,8 +14,6 @@ namespace Workshop1.Scripts
         [Tooltip("Seconds to wait before the next spawn.")]
         public float timerToCreateEnemy = 5;
         [Tooltip("We want to make sure the character is either alive or won the match")]
-        public CharacterBase playerCharacter;
-        [Tooltip("We want to make sure the character is either alive or won the match")]
         public GameController gameController;
         
         /// <summary>
@@ -31,7 +29,7 @@ namespace Workshop1.Scripts
         // =============================================================================================================
         private void Update()
         {
-            if (gameController.gameFinished || playerCharacter.healthPoints <= 0)
+            if (gameController.gameFinished)
                 return;
 
             currentTimer -= Time.deltaTime;

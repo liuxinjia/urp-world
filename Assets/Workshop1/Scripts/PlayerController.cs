@@ -20,7 +20,7 @@ namespace Workshop1.Scripts
         private void HandleMovement()
         {
             //I can't move if I am attacking or dead
-            if (waitingAttackTimer > 0 || isDead)
+            if (waitingAttackTimer > 0 || isDead || gameController.gameFinished)
                 return;
             
             var moveHorizontal = Input.GetAxis("Horizontal");
@@ -45,7 +45,7 @@ namespace Workshop1.Scripts
         {
             base.HandleAttacks();
 
-            if (waitingAttackTimer > 0 || isDead)
+            if (waitingAttackTimer > 0 || isDead || gameController.gameFinished)
                 return;
             
             //If we press the correct key, sends the attack
@@ -55,12 +55,6 @@ namespace Workshop1.Scripts
                 waitingAttackTimer = attackWaitTimer;
                 myAnimator.SetTrigger("Attack");
             }
-        }
-        // =============================================================================================================
-        protected override void SetDead()
-        {
-            base.SetDead();
-            
         }
         // =============================================================================================================
     }

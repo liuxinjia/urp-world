@@ -2070,7 +2070,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 2
+  m_CollisionDetection: 3
 --- !u!136 &5247796923669965154
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2100,10 +2100,11 @@ MonoBehaviour:
   healthPoints: 100
   isDead: 0
   characterGraphics: {fileID: 7162654852774887742}
+  hitFx: {fileID: 7787176349294610034, guid: 4852eef9036d9ab47957b279a60aa677, type: 3}
   moveSpeed: 40
   attackWaitTimer: 1.2
   attackDistance: 1.5
-  damagePower: 20
+  damagePower: 100
   enemyLayers:
     serializedVersion: 2
     m_Bits: 2048

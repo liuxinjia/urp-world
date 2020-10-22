@@ -191,6 +191,11 @@ namespace Game_HoldGrounds.Scripts
             atkWaitTimer -= Time.deltaTime;
             if (myNearestTarget != null && isInCombat)
             {
+                if (myNearestTarget.GetMyHealth <= 0)
+                {
+                    myNearestTarget = null;
+                    return;
+                }
                 targetDistance = Vector3.Distance(myTransform.position, myNearestTarget.GetPosition);
                 if (targetDistance <= unitData.atkDistance || startedToShoot)
                 {
@@ -342,11 +347,14 @@ namespace Game_HoldGrounds.Scripts
         {
             if (myNearestTarget != null)
             {
+                //Check if target is still alive, I do this so the target will have time to play death animation
+                if (myNearestTarget.GetMyHealth <= 0)
+                {
+                    myNearestTarget = null;
+                    return;
+                }
                 VfxManager.Instance.CallVFx(1, weaponPosition.position, Quaternion.identity);
                 myNearestTarget.TakeDamage(unitData.damage);
-                //Check if target is still alive, I will do this so the target will have time to play death animation
-                if (myNearestTarget.GetMyHealth <= 0)
-                    myNearestTarget = null;
             }
         }
         // =============================================================================================================
@@ -357,11 +365,14 @@ namespace Game_HoldGrounds.Scripts
         {
             if (myNearestTarget != null)
             {
+                //Check if target is still alive, I do this so the target will have time to play death animation
+                if (myNearestTarget.GetMyHealth <= 0)
+                {
+                    myNearestTarget = null;
+                    return;
+                }
                 VfxManager.Instance.CastProjectile(rangedVfxSpawnId, myTransform.position, myTransform.rotation,
                     IsAlly, unitData.damage);
-                //Check if target is still alive, I will do this so the target will have time to play death animation
-                if (myNearestTarget.GetMyHealth <= 0)
-                    myNearestTarget = null;
             }
         }
         // =============================================================================================================
@@ -370,6 +381,7 @@ namespace Game_HoldGrounds.Scripts
         /// </summary>
         protected override void OnObjectDestroyed()
         {
+            SetActivated(false);
             //Change tag, so this unit will not be a target anymore
             tag = GameTags.Untagged;
             //Play animation and audio

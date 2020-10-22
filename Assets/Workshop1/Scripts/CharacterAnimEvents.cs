@@ -13,8 +13,8 @@ namespace Workshop1.Scripts
         /// </summary>
         private void AttackHit()
         {
-            //Send this function call to all parent objects (expensive method, use it with caution)
-            //Here I did this because we can call this for our player or our enemy
+            //Unity function. Send this function call to all parent objects (expensive method, use it with caution)
+            //I did this because we can call this for our player or our enemy
             SendMessageUpwards("AttackCheckHit");
         }
         // =============================================================================================================

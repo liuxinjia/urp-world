@@ -7,12 +7,22 @@ Assets used (some were just audio, or UI, or meshes):
 Download the project on github:
 - https://github.com/Unity-Technologies/urp-world
 
+===== LOGS
+
+v0.2
+- Updated to Unity 2020.1.10f1
+- Fixed small bugs on movement when a unit dies.
+- Fixed small problems where dead units were still receiving damage.
+- Fixed small input problems from Input Manager.
+
+v0.1
+- Finished all game logic.
+
 ===== BRIEFING
 
-A small (but full) game where you need to reach the enemy flag and not lose morale.
+A small game where you need to reach the enemy flag and not lose morale.
 Your units will have to destroy units and buildings in their way.
 Assets are created to make it easy for anyone that wants to create more levels.
-This project can be used for learning and AlexandreK will create talks around it.
 
 Features
 - MonoBehaviour game objects
@@ -84,8 +94,3 @@ Gameplay:
 - Maybe add VR support.
 - Add mobile support.
 - Add console support.
-
-===== 
-Author: Alexandre (Alex) Kikuchi
-Lead Evangelist for the Americas
-===== 

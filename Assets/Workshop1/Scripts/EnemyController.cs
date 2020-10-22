@@ -40,7 +40,7 @@ namespace Workshop1.Scripts
         private void HandleMovement()
         {
             //I can't move if I am attacking or dead
-            if (waitingAttackTimer > 0 || isDead || myTarget == null)
+            if (waitingAttackTimer > 0 || isDead || myTarget == null || gameController.gameFinished)
                 return;
             
             //Rotate to target
@@ -68,7 +68,7 @@ namespace Workshop1.Scripts
         {
             base.HandleAttacks();
 
-            if (waitingAttackTimer > 0 || isDead || playerTarget.healthPoints <= 0)
+            if (waitingAttackTimer > 0 || isDead || gameController.gameFinished)
                 return;
             
             //Send the attack as soon as possible
@@ -77,13 +77,14 @@ namespace Workshop1.Scripts
                 // Debug.Log("Sending attack call...");
                 waitingAttackTimer = attackWaitTimer;
                 myAnimator.SetTrigger("Attack");
+                targetIsClose = false;
             }
         }
         // =============================================================================================================
         protected override void SetDead()
         {
             base.SetDead();
-            
+            gameController.AddScore();
         }
         // =============================================================================================================
     }

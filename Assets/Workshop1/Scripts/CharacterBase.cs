@@ -16,6 +16,8 @@ namespace Workshop1.Scripts
         [Header("====== Graphics")]
         [Tooltip("The character graphics to make it rotate.")]
         public Transform characterGraphics;
+        [Tooltip("The effects when this character gets hit.")]
+        public GameObject hitFx;
         
         [Header("====== Movement")]
         [Tooltip("My move speed.")]
@@ -31,6 +33,10 @@ namespace Workshop1.Scripts
         [Tooltip("What can we hit?")]
         public LayerMask enemyLayers;
         
+        /// <summary>
+        /// We will use as reference to our game logic.
+        /// </summary>
+        internal GameController gameController;
         /// <summary>
         /// Cached data for Rigidbody component.
         /// </summary>
@@ -48,6 +54,8 @@ namespace Workshop1.Scripts
         protected virtual void Start()
         {
             //Get the components from our game object
+            var gameObj = GameObject.FindWithTag("GameManager");
+            gameController = gameObj.GetComponent<GameController>();
             myRigidbody = GetComponent<Rigidbody>();
             myAnimator = GetComponentInChildren<Animator>();
         }
@@ -61,7 +69,7 @@ namespace Workshop1.Scripts
         /// <summary>
         /// Animate our player based on movement.
         /// </summary>
-        protected void HandleAnimation()
+        private void HandleAnimation()
         {
             if (isDead)
                 return;
@@ -107,18 +115,31 @@ namespace Workshop1.Scripts
         /// <param name="dmgAmount"></param>
         private void ReceiveDamage(float dmgAmount)
         {
-            if (isDead)
+            //Are we dead or did the game finish already?
+            if (isDead || gameController.gameFinished)
                 return;
+            
+            //Play FX
+            Instantiate(hitFx, transform.position, Quaternion.identity);
+            
+            //Decrease health and check if we will die
             healthPoints -= dmgAmount;
+            
+            //Check if this character is dead
             if (healthPoints <= 0)
             {
+                healthPoints = 0;
                 SetDead();
             }
+            
+            //Update UI in case this is the player
+            if (CompareTag("Player"))
+                gameController.UpdateHealth(healthPoints);
         }
         // =============================================================================================================
         /// <summary>
-        /// Set character dead. Making it virtual, we can create different behaviours, like for the player we want
-        /// to show the end screen, etc. For the enemy, we just want him to explode, LOL.
+        /// Set character dead. Making it virtual, we can create different behaviours.
+        /// For the enemy, we just will instance a VFX (visual effects) and add score points.
         /// </summary>
         protected virtual void SetDead()
         {
