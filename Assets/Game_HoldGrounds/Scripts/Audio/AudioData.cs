@@ -10,6 +10,9 @@ namespace Game_HoldGrounds.Scripts.Audio
     [Serializable]
     public class AudioData
     {
+
+
+
         public AudioMixer audioMixer;
         [Tooltip("Values based on Audio Mixer.")]
         [Range(-80.0f, 1.0f)] public float audioOverallVolume;
@@ -17,7 +20,7 @@ namespace Game_HoldGrounds.Scripts.Audio
         [Range(-80.0f, 1.0f)] public float audioMusicVolume;
         [Tooltip("Values based on Audio Mixer.")]
         [Range(-80.0f, 1.0f)] public float audioSfxVolume;
-        
+
         /// <summary>
         /// Audio music name used to save as configuration.
         /// </summary>
